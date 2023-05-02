@@ -1,0 +1,1 @@
+docker run --name phpmyadmin -d --link bootcamp-mysql:db -p 8080:80 phpmyadmin

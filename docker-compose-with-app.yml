@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  my-java-app:
+    image: 165.22.79.82/my-java-app:1.0-SNAPSHOT
+    environment:
+      - DB_USER=admin
+      - DB_PWD=admin
+      - DB_SERVER=bootcamp-mysql
+      - DB_NAME=db
+    ports:
+      - "8080:8080"
+  bootcamp-mysql:
+    image: mysql:latest
+    container_name: bootcamp-mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - db
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+
+  bootcamp-phpmyadmin:
+    image: phpmyadmin
+    container_name: bootcamp-phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=bootcamp-mysql
